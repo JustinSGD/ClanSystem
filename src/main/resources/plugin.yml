@@ -1,0 +1,12 @@
+name: ClanSystem
+authors:
+  - Justin_SGD
+version: 1.0.0-SNAPSHOT
+main: de.jubyte.clansystem.ClanSystem
+softdepend:
+  - LuckPerms
+commands:
+  clan:
+    aliases:
+      - clans
+      - c
