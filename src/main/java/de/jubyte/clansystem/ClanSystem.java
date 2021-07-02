@@ -25,8 +25,6 @@ public class ClanSystem extends JavaPlugin {
         createConnection();
         loadCache();
 
-        reconnectDatabase();
-
         loadCommands();
         loadListener();
 
@@ -58,14 +56,6 @@ public class ClanSystem extends JavaPlugin {
     public void createConnection() {
         this.storage = new Storage();
         storage.createConnection();
-    }
-
-    public void reconnectDatabase() {
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, () -> {
-            if(!storage.isConnected()) {
-                createConnection();
-            }
-        }, 0, (20 * 60) * 5);
     }
 
     private void sendMessage(String status) {
