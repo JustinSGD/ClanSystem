@@ -22,11 +22,10 @@ public class ClanSystem extends JavaPlugin {
     public void onEnable() {
         PLUGIN = this;
 
-        this.storage = new Storage();
-        storage.createConnection();
+        createConnection();
+        loadCache();
 
-        clanCache = new ClanCache();
-        clanMemberCache = new ClanMemberCache();
+        reconnectDatabase();
 
         loadCommands();
         loadListener();
@@ -49,6 +48,24 @@ public class ClanSystem extends JavaPlugin {
     public void loadListener() {
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new PlayerJoinListener(), this);
+    }
+
+    public void loadCache() {
+        clanCache = new ClanCache();
+        clanMemberCache = new ClanMemberCache();
+    }
+
+    public void createConnection() {
+        this.storage = new Storage();
+        storage.createConnection();
+    }
+
+    public void reconnectDatabase() {
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, () -> {
+            if(!storage.isConnected()) {
+                createConnection();
+            }
+        }, 0, (20 * 60) * 5);
     }
 
     private void sendMessage(String status) {

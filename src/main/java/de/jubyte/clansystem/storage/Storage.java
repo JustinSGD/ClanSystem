@@ -27,8 +27,8 @@ public class Storage {
                 .setDialect(Dialect.MYSQL)
                 .setAddress(new InetSocketAddress("localhost", 3306))
                 .setDataSourceClassName(HikariDataSource.class.getName())
-                .setUsername("")
-                .setPassword("")
+                .setUsername("root")
+                .setPassword("09277f48e6bd")
                 .build());
         this.databaseDriver.connect();
         this.database = databaseDriver.getDatabase("ClanSystem");
