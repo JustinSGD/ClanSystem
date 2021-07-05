@@ -25,7 +25,6 @@ public class ClanCommand implements CommandExecutor {
         if (strings.length == 3) {
             if(commandSender instanceof Player) {
                 Player player = (Player) commandSender;
-                ClanMemberPlayer.createClanMember(player.getUniqueId(), player.getName());
                 if(strings[0].equalsIgnoreCase("create")) {
                     String clanName = strings[1];
                     ClanMemberPlayer clanMemberPlayer = ClanSystem.getPLUGIN().getClanMemberCache().getClanMemberByUUID(player.getUniqueId());

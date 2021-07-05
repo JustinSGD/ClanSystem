@@ -25,14 +25,14 @@ public class ClanCache {
                         DatabaseCollection collection = ClanSystem.getPLUGIN().getStorage().getClanCollection();
                         QueryResultEntry resultEntry = collection.find().where("ClanID", iD).execute().first();
 
-                        if(resultEntry != null) {
-                            return new ClanEntry(iD, resultEntry.getString("ClanName"), resultEntry.getString("ClanTag"));
+                        if(resultEntry == null) {
+                            return null;
                         }
-                        return null;
+                        return new ClanEntry(iD, resultEntry.getString("ClanName"), resultEntry.getString("ClanTag"));
                     }
                     @Override
-                    public boolean check(ClanEntry o, Object[] objects) {
-                        return false;
+                    public boolean check(ClanEntry clanEntry, Object[] objects) {
+                        return clanEntry.getClanID() == (int) objects[0];
                     }
                 })
                 .registerQuery("byTag", new CacheQuery<ClanEntry>() {
@@ -42,14 +42,14 @@ public class ClanCache {
                         DatabaseCollection collection = ClanSystem.getPLUGIN().getStorage().getClanCollection();
                         QueryResultEntry resultEntry = collection.find().where("ClanTag", clanTag).execute().first();
 
-                        if(resultEntry != null) {
-                            return new ClanEntry(resultEntry.getInt("ClanID"), resultEntry.getString("ClanName"), clanTag);
+                        if(resultEntry == null) {
+                            return null;
                         }
-                        return null;
+                        return new ClanEntry(resultEntry.getInt("ClanID"), resultEntry.getString("ClanName"), clanTag);
                     }
                     @Override
-                    public boolean check(ClanEntry o, Object[] objects) {
-                        return false;
+                    public boolean check(ClanEntry clanEntry, Object[] objects) {
+                        return clanEntry.getClanTag().equalsIgnoreCase((String) objects[0]) && clanEntry.getClanID() > 0;
                     }
                 })
                 .registerQuery("byName", new CacheQuery<ClanEntry>() {
@@ -58,15 +58,20 @@ public class ClanCache {
                         String clanName = (String) identifiers[0];
                         DatabaseCollection collection = ClanSystem.getPLUGIN().getStorage().getClanCollection();
                         QueryResultEntry resultEntry = collection.find().where("ClanName", clanName).execute().first();
-
-                        if(resultEntry != null) {
-                            return new ClanEntry(resultEntry.getInt("ClanID"), clanName, resultEntry.getString("ClanTag"));
+                        if(resultEntry == null) {
+                            return null;
                         }
-                        return null;
+                        System.out.println("ClanID: " + resultEntry.getInt("ClanID"));
+                        System.out.println("Clanname: " + clanName);
+                        System.out.println("ClanTag: " + resultEntry.getString("ClanTag"));
+                        return new ClanEntry(resultEntry.getInt("ClanID"), clanName, resultEntry.getString("ClanTag"));
                     }
                     @Override
-                    public boolean check(ClanEntry o, Object[] objects) {
-                        return false;
+                    public boolean check(ClanEntry clanEntry, Object[] objects) {
+                        System.out.println("Name: " + clanEntry.getClanName());
+                        System.out.println("Object: " + objects[0]);
+                        System.out.println(clanEntry.getClanName().equals(objects[0]));
+                        return clanEntry.getClanName().equalsIgnoreCase((String) objects[0]) && clanEntry.getClanID() > 0;
                     }
                 });
     }

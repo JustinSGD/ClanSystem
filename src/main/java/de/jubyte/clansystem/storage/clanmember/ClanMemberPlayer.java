@@ -36,19 +36,12 @@ public class ClanMemberPlayer {
         return role;
     }
 
-    public static boolean playerExists(UUID uuid) {
-        return !ClanSystem.getPLUGIN().getStorage().getClanMembersCollection().find().where("UUID", uuid).execute().isEmpty();
+    public UUID getUuid() {
+        return uuid;
     }
 
-    public static void createClanMember(UUID uuid, String name) {
-        if(!playerExists(uuid)) {
-            ClanSystem.getPLUGIN().getStorage().getClanMembersCollection().insert()
-                    .set("UUID", uuid)
-                    .set("Name", name)
-                    .set("ClanID", 0)
-                    .set("Role", 0)
-                    .execute();
-        }
+    public static boolean playerExists(UUID uuid) {
+        return !ClanSystem.getPLUGIN().getStorage().getClanMembersCollection().find().where("UUID", uuid).execute().isEmpty();
     }
 
     public void setClanID(int clanID) {

@@ -44,8 +44,8 @@ public class ClanMemberCache {
                     }
 
                     @Override
-                    public boolean check(ClanMemberPlayer o, Object[] objects) {
-                        return false;
+                    public boolean check(ClanMemberPlayer clanMemberPlayer, Object[] objects) {
+                        return clanMemberPlayer.getUuid().equals(objects[0]);
                     }
                 });
     }

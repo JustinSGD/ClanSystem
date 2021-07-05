@@ -61,8 +61,6 @@ public class ClanEntry {
         ClanSystem.getPLUGIN().getStorage().getClanCollection().delete()
                 .where("ClanID", clanID)
                 .execute();
-        this.clanName = null;
-        this.clanTag = null;
         this.clanID = 0;
     }
 }
