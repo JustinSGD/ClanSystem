@@ -25,10 +25,10 @@ public class Storage {
         Bukkit.getLogger();
         this.databaseDriver = DatabaseDriverFactory.create("ClanSystem", new SQLDatabaseDriverConfigBuilder()
                 .setDialect(Dialect.MYSQL)
-                .setAddress(new InetSocketAddress("45.88.110.196", 3306))
+                .setAddress(new InetSocketAddress("", 3306))
                 .setDataSourceClassName(HikariDataSource.class.getName())
-                .setUsername("root")
-                .setPassword("09277f48e6bd")
+                .setUsername("")
+                .setPassword("")
                 .build());
         this.databaseDriver.connect();
         this.database = databaseDriver.getDatabase("ClanSystem");

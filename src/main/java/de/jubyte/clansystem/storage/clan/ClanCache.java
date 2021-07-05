@@ -42,9 +42,7 @@ public class ClanCache {
                         DatabaseCollection collection = ClanSystem.getPLUGIN().getStorage().getClanCollection();
                         QueryResultEntry resultEntry = collection.find().where("ClanTag", clanTag).execute().first();
 
-                        if(resultEntry == null) {
-                            return null;
-                        }
+                        if(resultEntry == null) return null;
                         return new ClanEntry(resultEntry.getInt("ClanID"), resultEntry.getString("ClanName"), clanTag);
                     }
                     @Override
