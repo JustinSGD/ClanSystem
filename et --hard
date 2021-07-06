@@ -1,0 +1,23 @@
+[33mcommit 11e1c86d5ec7eaccf989b8bdeeb7997cb33ab953[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: JustinSGD <pohlers53@gmail.com>
+Date:   Mon Jul 5 22:14:45 2021 +0200
+
+    Fixed Caching
+
+[33mcommit 5bb745e53fcecd175939940a1f254a6a37af2298[m
+Author: JustinSGD <pohlers53@gmail.com>
+Date:   Fri Jul 2 11:20:07 2021 +0200
+
+    Removed Database reconnection
+
+[33mcommit 6cfab6c34cb1ba5d521f5baa887f4e1106551d9b[m
+Author: JustinSGD <pohlers53@gmail.com>
+Date:   Fri Jul 2 08:59:26 2021 +0200
+
+    Added Database reconnection
+
+[33mcommit 1d3f1c24808cb4723961cdfad15504f040de6377[m
+Author: JustinSGD <pohlers53@gmail.com>
+Date:   Tue Jun 29 21:16:22 2021 +0200
+
+    Initial commit
